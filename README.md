@@ -290,8 +290,10 @@ alignment). APD shown as a percentage, higher APD is better, lower EPE is better
       <th colspan="2" align="center">PO</th>
       <th colspan="2" align="center">DR</th>
       <th colspan="2" align="center">ADT</th>
+      <th colspan="2" align="center">Mean</th>
     </tr>
     <tr>
+      <th align="right">APD&nbsp;↑</th><th align="right">EPE&nbsp;↓</th>
       <th align="right">APD&nbsp;↑</th><th align="right">EPE&nbsp;↓</th>
       <th align="right">APD&nbsp;↑</th><th align="right">EPE&nbsp;↓</th>
       <th align="right">APD&nbsp;↑</th><th align="right">EPE&nbsp;↓</th>
@@ -299,12 +301,12 @@ alignment). APD shown as a percentage, higher APD is better, lower EPE is better
     </tr>
   </thead>
   <tbody>
-    <tr><td><b>Track4World</b> · 16f</td><td align="right">78.51</td><td align="right">0.1968</td><td align="right"><b>73.32</b></td><td align="right"><b>0.2589</b></td><td align="right">69.96</td><td align="right">0.3091</td><td align="right"><b>86.76</b></td><td align="right"><b>0.1478</b></td></tr>
-    <tr><td><b>OpenD4RT</b> · 16f</td><td align="right"><b>81.42</b></td><td align="right"><b>0.1663</b></td><td align="right">68.80</td><td align="right">0.3330</td><td align="right"><b>72.11</b></td><td align="right"><b>0.3023</b></td><td align="right">75.34</td><td align="right">0.2421</td></tr>
-    <tr><td><b>Track4World</b> · 50f</td><td align="right">73.95</td><td align="right">0.2200</td><td align="right"><b>69.19</b></td><td align="right"><b>0.3041</b></td><td align="right">70.32</td><td align="right">0.3062</td><td align="right"><b>82.14</b></td><td align="right"><b>0.1862</b></td></tr>
-    <tr><td><b>OpenD4RT</b> · 50f</td><td align="right"><b>80.53</b></td><td align="right"><b>0.1693</b></td><td align="right">67.93</td><td align="right">0.3216</td><td align="right"><b>72.84</b></td><td align="right"><b>0.2941</b></td><td align="right">71.97</td><td align="right">0.2712</td></tr>
-    <tr><td><b>Track4World</b> · 64f</td><td align="right">72.86</td><td align="right">0.2274</td><td align="right"><b>66.67</b></td><td align="right"><b>0.3323</b></td><td align="right">69.91</td><td align="right">0.3088</td><td align="right"><b>79.71</b></td><td align="right"><b>0.2212</b></td></tr>
-    <tr><td><b>OpenD4RT</b> · 64f</td><td align="right"><b>78.63</b></td><td align="right"><b>0.1812</b></td><td align="right">66.04</td><td align="right">0.3397</td><td align="right"><b>72.65</b></td><td align="right"><b>0.2944</b></td><td align="right">69.91</td><td align="right">0.2966</td></tr>
+    <tr><td><b>Track4World</b> · 16f</td><td align="right">78.51</td><td align="right">0.1968</td><td align="right"><b>73.32</b></td><td align="right"><b>0.2589</b></td><td align="right">69.96</td><td align="right">0.3091</td><td align="right"><b>86.76</b></td><td align="right"><b>0.1478</b></td><td align="right"><b>77.14</b></td><td align="right"><b>0.2282</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 16f</td><td align="right"><b>81.42</b></td><td align="right"><b>0.1663</b></td><td align="right">68.80</td><td align="right">0.3330</td><td align="right"><b>72.11</b></td><td align="right"><b>0.3023</b></td><td align="right">75.34</td><td align="right">0.2421</td><td align="right">74.42</td><td align="right">0.2609</td></tr>
+    <tr><td><b>Track4World</b> · 50f</td><td align="right">73.95</td><td align="right">0.2200</td><td align="right"><b>69.19</b></td><td align="right"><b>0.3041</b></td><td align="right">70.32</td><td align="right">0.3062</td><td align="right"><b>82.14</b></td><td align="right"><b>0.1862</b></td><td align="right"><b>73.90</b></td><td align="right"><b>0.2541</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 50f</td><td align="right"><b>80.53</b></td><td align="right"><b>0.1693</b></td><td align="right">67.93</td><td align="right">0.3216</td><td align="right"><b>72.84</b></td><td align="right"><b>0.2941</b></td><td align="right">71.97</td><td align="right">0.2712</td><td align="right">73.32</td><td align="right">0.2640</td></tr>
+    <tr><td><b>Track4World</b> · 64f</td><td align="right">72.86</td><td align="right">0.2274</td><td align="right"><b>66.67</b></td><td align="right"><b>0.3323</b></td><td align="right">69.91</td><td align="right">0.3088</td><td align="right"><b>79.71</b></td><td align="right"><b>0.2212</b></td><td align="right"><b>72.29</b></td><td align="right"><b>0.2724</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 64f</td><td align="right"><b>78.63</b></td><td align="right"><b>0.1812</b></td><td align="right">66.04</td><td align="right">0.3397</td><td align="right"><b>72.65</b></td><td align="right"><b>0.2944</b></td><td align="right">69.91</td><td align="right">0.2966</td><td align="right">71.81</td><td align="right">0.2780</td></tr>
   </tbody>
 </table>
 
@@ -319,8 +321,10 @@ thresholds). APD, AJ and OA shown as percentages, higher is better:
       <th colspan="3" align="center">PO</th>
       <th colspan="3" align="center">DR</th>
       <th colspan="3" align="center">ADT</th>
+      <th colspan="3" align="center">Mean</th>
     </tr>
     <tr>
+      <th align="right">APD&nbsp;↑</th><th align="right">AJ&nbsp;↑</th><th align="right">OA&nbsp;↑</th>
       <th align="right">APD&nbsp;↑</th><th align="right">AJ&nbsp;↑</th><th align="right">OA&nbsp;↑</th>
       <th align="right">APD&nbsp;↑</th><th align="right">AJ&nbsp;↑</th><th align="right">OA&nbsp;↑</th>
       <th align="right">APD&nbsp;↑</th><th align="right">AJ&nbsp;↑</th><th align="right">OA&nbsp;↑</th>
@@ -328,12 +332,12 @@ thresholds). APD, AJ and OA shown as percentages, higher is better:
     </tr>
   </thead>
   <tbody>
-    <tr><td><b>Track4World</b> · 16f</td><td align="right">59.14</td><td align="right">51.86</td><td align="right"><b>93.67</b></td><td align="right"><b>53.86</b></td><td align="right"><b>39.65</b></td><td align="right">80.04</td><td align="right">49.75</td><td align="right">43.89</td><td align="right"><b>97.21</b></td><td align="right"><b>62.83</b></td><td align="right"><b>58.17</b></td><td align="right"><b>98.78</b></td></tr>
-    <tr><td><b>OpenD4RT</b> · 16f</td><td align="right"><b>59.93</b></td><td align="right"><b>52.33</b></td><td align="right">92.91</td><td align="right">51.43</td><td align="right">37.32</td><td align="right"><b>81.64</b></td><td align="right"><b>50.73</b></td><td align="right"><b>44.47</b></td><td align="right">96.20</td><td align="right">50.51</td><td align="right">45.33</td><td align="right">97.24</td></tr>
-    <tr><td><b>Track4World</b> · 50f</td><td align="right">54.56</td><td align="right">44.42</td><td align="right">87.91</td><td align="right"><b>51.31</b></td><td align="right"><b>35.55</b></td><td align="right">76.81</td><td align="right">50.95</td><td align="right">44.07</td><td align="right"><b>94.64</b></td><td align="right"><b>56.69</b></td><td align="right"><b>51.94</b></td><td align="right"><b>98.12</b></td></tr>
-    <tr><td><b>OpenD4RT</b> · 50f</td><td align="right"><b>58.53</b></td><td align="right"><b>49.98</b></td><td align="right"><b>91.02</b></td><td align="right">50.26</td><td align="right">34.46</td><td align="right"><b>79.69</b></td><td align="right"><b>52.34</b></td><td align="right"><b>44.53</b></td><td align="right">93.32</td><td align="right">50.89</td><td align="right">43.90</td><td align="right">93.50</td></tr>
-    <tr><td><b>Track4World</b> · 64f</td><td align="right">53.65</td><td align="right">42.44</td><td align="right">86.05</td><td align="right"><b>50.45</b></td><td align="right"><b>34.66</b></td><td align="right">76.49</td><td align="right">51.01</td><td align="right">43.91</td><td align="right"><b>94.03</b></td><td align="right"><b>54.40</b></td><td align="right"><b>49.65</b></td><td align="right"><b>97.92</b></td></tr>
-    <tr><td><b>OpenD4RT</b> · 64f</td><td align="right"><b>56.66</b></td><td align="right"><b>47.39</b></td><td align="right"><b>89.61</b></td><td align="right">48.87</td><td align="right">33.00</td><td align="right"><b>79.33</b></td><td align="right"><b>52.34</b></td><td align="right"><b>44.18</b></td><td align="right">92.60</td><td align="right">48.64</td><td align="right">41.46</td><td align="right">91.85</td></tr>
+    <tr><td><b>Track4World</b> · 16f</td><td align="right">59.14</td><td align="right">51.86</td><td align="right"><b>93.67</b></td><td align="right"><b>53.86</b></td><td align="right"><b>39.65</b></td><td align="right">80.04</td><td align="right">49.75</td><td align="right">43.89</td><td align="right"><b>97.21</b></td><td align="right"><b>62.83</b></td><td align="right"><b>58.17</b></td><td align="right"><b>98.78</b></td><td align="right"><b>56.39</b></td><td align="right"><b>48.39</b></td><td align="right"><b>92.42</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 16f</td><td align="right"><b>59.93</b></td><td align="right"><b>52.33</b></td><td align="right">92.91</td><td align="right">51.43</td><td align="right">37.32</td><td align="right"><b>81.64</b></td><td align="right"><b>50.73</b></td><td align="right"><b>44.47</b></td><td align="right">96.20</td><td align="right">50.51</td><td align="right">45.33</td><td align="right">97.24</td><td align="right">53.15</td><td align="right">44.86</td><td align="right">92.00</td></tr>
+    <tr><td><b>Track4World</b> · 50f</td><td align="right">54.56</td><td align="right">44.42</td><td align="right">87.91</td><td align="right"><b>51.31</b></td><td align="right"><b>35.55</b></td><td align="right">76.81</td><td align="right">50.95</td><td align="right">44.07</td><td align="right"><b>94.64</b></td><td align="right"><b>56.69</b></td><td align="right"><b>51.94</b></td><td align="right"><b>98.12</b></td><td align="right"><b>53.38</b></td><td align="right"><b>44.00</b></td><td align="right">89.37</td></tr>
+    <tr><td><b>OpenD4RT</b> · 50f</td><td align="right"><b>58.53</b></td><td align="right"><b>49.98</b></td><td align="right"><b>91.02</b></td><td align="right">50.26</td><td align="right">34.46</td><td align="right"><b>79.69</b></td><td align="right"><b>52.34</b></td><td align="right"><b>44.53</b></td><td align="right">93.32</td><td align="right">50.89</td><td align="right">43.90</td><td align="right">93.50</td><td align="right">53.00</td><td align="right">43.22</td><td align="right"><b>89.38</b></td></tr>
+    <tr><td><b>Track4World</b> · 64f</td><td align="right">53.65</td><td align="right">42.44</td><td align="right">86.05</td><td align="right"><b>50.45</b></td><td align="right"><b>34.66</b></td><td align="right">76.49</td><td align="right">51.01</td><td align="right">43.91</td><td align="right"><b>94.03</b></td><td align="right"><b>54.40</b></td><td align="right"><b>49.65</b></td><td align="right"><b>97.92</b></td><td align="right"><b>52.38</b></td><td align="right"><b>42.66</b></td><td align="right"><b>88.62</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 64f</td><td align="right"><b>56.66</b></td><td align="right"><b>47.39</b></td><td align="right"><b>89.61</b></td><td align="right">48.87</td><td align="right">33.00</td><td align="right"><b>79.33</b></td><td align="right"><b>52.34</b></td><td align="right"><b>44.18</b></td><td align="right">92.60</td><td align="right">48.64</td><td align="right">41.46</td><td align="right">91.85</td><td align="right">51.63</td><td align="right">41.51</td><td align="right">88.35</td></tr>
   </tbody>
 </table>
 
