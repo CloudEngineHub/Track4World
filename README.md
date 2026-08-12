@@ -233,6 +233,104 @@ For detailed instructions on how to evaluate the model on standard benchmarks (S
 
 👉 **[Evaluation Guide (evaluation/eval.md)](evaluation/eval.md)**
 
+
+### 📈 WorldTrack: comparison with OpenD4RT
+
+Track4World and OpenD4RT are scored on the four WorldTrack subsets (50 clips each)
+under **both** projects' evaluation protocols. In each protocol only the predictor is
+swapped — the data loader, the alignment and the metric code are the host protocol's
+own. Track4World is `track4world_da3.pth` with `--coordinate world_depthanythingv3`;
+OpenD4RT is its released `OpenD4RT_32CLIP_9Dataset_NoAUG`.
+
+Both models are fed the **same image information**: every clip is downsampled to the
+256x256 OpenD4RT consumes and then upsampled back to Track4World's own canvas. The
+bottleneck is bit-identical to OpenD4RT's input (both go through Open-d4rt's
+`_resize_video`, i.e. `cv2.INTER_AREA`), so neither model sees more of the image than
+the other.
+
+#### How to reproduce
+
+OpenD4RT lives beside this repo as a git submodule, so both directions of the swap run
+against its unmodified code:
+
+```bash
+git submodule update --init third_party/Open-d4rt
+# then follow third_party/Open-d4rt/README.md to fetch OpenD4RT_32CLIP_9Dataset_NoAUG
+# into third_party/Open-d4rt/checkpoints/
+```
+
+Two adapters under `evaluation/opend4rt_comparison/` each keep the host protocol's data
+loader, alignment and metrics and only replace the predictor. `--bottleneck-hw` /
+`--bottleneck_hw` route each clip through 256x256 and back up, matching the image
+information available to OpenD4RT:
+
+```bash
+# Track4World under Open-d4rt's protocol
+python evaluation/opend4rt_comparison/eval_track4world_in_worldtrack.py \
+    --data-root evaluation/track --num-frames 64 --bottleneck-hw 256,256
+
+# OpenD4RT under Track4World's protocol
+python evaluation/opend4rt_comparison/eval_opend4rt_in_t4w.py \
+    --dataset adt --num_frames 16
+```
+
+#### Results (image information matched)
+
+Track4World's numbers are its info-matched score; OpenD4RT's are unchanged, since it
+already runs at 256x256. Each protocol reports its own metrics; best per cell in bold.
+
+Under **Open-d4rt's protocol** (frame-0 visible queries, global median-scale alignment).
+**APD** (↑):
+
+| Subset | T4W 16f | D4RT 16f | T4W 50f | D4RT 50f | T4W 64f | D4RT 64f |
+|---|---:|---:|---:|---:|---:|---:|
+| `adt` | **0.8676** | 0.7534 | **0.8214** | 0.7197 | **0.7971** | 0.6991 |
+| `po` | **0.7332** | 0.6880 | **0.6919** | 0.6793 | **0.6667** | 0.6604 |
+| `pstudio` | 0.7851 | **0.8142** | 0.7395 | **0.8053** | 0.7286 | **0.7863** |
+| `ds` | 0.6996 | **0.7211** | 0.7032 | **0.7284** | 0.6991 | **0.7265** |
+| **mean** | **0.7714** | 0.7442 | **0.7390** | 0.7332 | **0.7229** | 0.7181 |
+
+**EPE** (↓):
+
+| Subset | T4W 16f | D4RT 16f | T4W 50f | D4RT 50f | T4W 64f | D4RT 64f |
+|---|---:|---:|---:|---:|---:|---:|
+| `adt` | **0.1478** | 0.2421 | **0.1862** | 0.2712 | **0.2212** | 0.2966 |
+| `po` | **0.2589** | 0.3330 | **0.3041** | 0.3216 | **0.3323** | 0.3397 |
+| `pstudio` | 0.1968 | **0.1663** | 0.2200 | **0.1693** | 0.2274 | **0.1812** |
+| `ds` | 0.3091 | **0.3023** | 0.3062 | **0.2941** | 0.3088 | **0.2944** |
+| **mean** | **0.2282** | 0.2609 | **0.2541** | 0.2640 | **0.2724** | 0.2780 |
+
+Under **Track4World's protocol** (isotropic scale + 3D shift alignment, TAPVid-3D
+thresholds). **APD** (↑):
+
+| Subset | T4W 16f | D4RT 16f | T4W 50f | D4RT 50f | T4W 64f | D4RT 64f |
+|---|---:|---:|---:|---:|---:|---:|
+| `adt` | **0.6283** | 0.5051 | **0.5669** | 0.5089 | **0.5440** | 0.4864 |
+| `po` | **0.5386** | 0.5143 | **0.5131** | 0.5026 | **0.5045** | 0.4887 |
+| `pstudio` | 0.5914 | **0.5993** | 0.5456 | **0.5853** | 0.5365 | **0.5666** |
+| `ds` | 0.4975 | **0.5073** | 0.5095 | **0.5234** | 0.5101 | **0.5234** |
+| **mean** | **0.5639** | 0.5315 | **0.5338** | 0.5301 | **0.5238** | 0.5163 |
+
+**AJ** (↑):
+
+| Subset | T4W 16f | D4RT 16f | T4W 50f | D4RT 50f | T4W 64f | D4RT 64f |
+|---|---:|---:|---:|---:|---:|---:|
+| `adt` | **0.5817** | 0.4533 | **0.5194** | 0.4390 | **0.4965** | 0.4146 |
+| `po` | **0.3965** | 0.3732 | **0.3555** | 0.3446 | **0.3466** | 0.3300 |
+| `pstudio` | 0.5186 | **0.5233** | 0.4442 | **0.4998** | 0.4244 | **0.4739** |
+| `ds` | 0.4389 | **0.4447** | 0.4407 | **0.4453** | 0.4391 | **0.4418** |
+| **mean** | **0.4839** | 0.4486 | **0.4400** | 0.4322 | **0.4266** | 0.4151 |
+
+**OA** (↑):
+
+| Subset | T4W 16f | D4RT 16f | T4W 50f | D4RT 50f | T4W 64f | D4RT 64f |
+|---|---:|---:|---:|---:|---:|---:|
+| `adt` | **0.9878** | 0.9724 | **0.9812** | 0.9350 | **0.9792** | 0.9185 |
+| `po` | 0.8004 | **0.8164** | 0.7681 | **0.7969** | 0.7649 | **0.7933** |
+| `pstudio` | **0.9367** | 0.9291 | 0.8791 | **0.9102** | 0.8605 | **0.8961** |
+| `ds` | **0.9721** | 0.9620 | **0.9464** | 0.9332 | **0.9403** | 0.9260 |
+| **mean** | **0.9242** | 0.9200 | 0.8937 | **0.8938** | **0.8862** | 0.8835 |
+
 ---
 
 ## 📝 Citation

@@ -328,6 +328,29 @@ def test_track(model: torch.nn.Module, args: argparse.Namespace):
         # Prepare input format: (B, T, C, H, W)
         rgbs = rgbs.permute(0, 1, -1, 2, 3).float()
         B, T, C, H, W = rgbs.shape
+
+        # Optionally equalise image information against a model evaluated at a
+        # smaller size: route the clip through that canvas and back up, leaving the
+        # ground truth and the queries at the dataset resolution.
+        #
+        # Deliberately cv2 on uint8, matching Open-d4rt's _resize_video: torch's
+        # 'area' mode is adaptive_avg_pool2d, whose integer bin edges disagree with
+        # INTER_AREA whenever the ratio is fractional (360 -> 256 differs by up to
+        # 41/255). Going through cv2 makes the bottleneck bit-identical to what
+        # OpenD4RT is fed, which is the whole point of the comparison.
+        if getattr(args, 'bottleneck_hw', ''):
+            bh, bw = [int(v) for v in str(args.bottleneck_hw).replace('x', ',').split(',')]
+            src = rgbs.reshape(B * T, C, H, W).permute(0, 2, 3, 1).cpu().numpy().astype(np.uint8)
+            small = [cv2.resize(f, (bw, bh), interpolation=cv2.INTER_AREA) for f in src]
+            back = np.stack([cv2.resize(f, (W, H), interpolation=cv2.INTER_LINEAR) for f in small])
+            rgbs = (
+                torch.from_numpy(back)
+                .permute(0, 3, 1, 2)
+                .float()
+                .to(rgbs.device)
+                .reshape(B, T, C, H, W)
+            )
+
         B, T, N, D = trajs_g.shape
 
         # Identify the first frame where each point is visible (query frame)
@@ -469,7 +492,7 @@ def test_track(model: torch.nn.Module, args: argparse.Namespace):
             align_src = pred_tracks3d.reshape(-1, 3)[::4]
             align_tgt = gt_tracks3d.reshape(-1, 3)[::4]
             align_weights = 1 / torch.ones_like(align_tgt.norm(dim=-1))
-        # torch.cuda.empty_cache()
+        torch.cuda.empty_cache()
         scale, shift = align_points_scale_xyz_shift(
             align_src, align_tgt, align_weights, exp=10
         )
@@ -527,8 +550,16 @@ if __name__ == "__main__":
         "--num_frames",
         type=int,
         default=16,
-        choices=[16, 50],
-        help="Number of frames used for tracking"
+        help="Number of frames used for tracking (16 and 50 are the paper settings; "
+             "the value only feeds TrackingEvalDataset, so other lengths also run)"
+    )
+
+    parser.add_argument(
+        "--bottleneck_hw",
+        type=str,
+        default="",
+        help="Downsample each clip to 'H,W' and back up before inference, to match "
+             "the image information available to a model evaluated at that size."
     )
     parser.add_argument(
         "--world_eval",
