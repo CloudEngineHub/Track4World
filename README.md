@@ -279,57 +279,63 @@ python evaluation/opend4rt_comparison/eval_opend4rt_in_t4w.py \
 Track4World's numbers are its info-matched score; OpenD4RT's are unchanged, since it
 already runs at 256x256. Each protocol reports its own metrics; best per cell in bold.
 
-Under **Open-d4rt's protocol** (frame-0 visible queries, global median-scale alignment).
-**APD** (↑):
+Under **Open-d4rt's protocol** (frame-0 visible queries, global median-scale
+alignment). APD shown as a percentage, higher APD is better, lower EPE is better:
 
-| Subset | T4W 16f | D4RT 16f | T4W 50f | D4RT 50f | T4W 64f | D4RT 64f |
-|---|---:|---:|---:|---:|---:|---:|
-| `adt` | **0.8676** | 0.7534 | **0.8214** | 0.7197 | **0.7971** | 0.6991 |
-| `po` | **0.7332** | 0.6880 | **0.6919** | 0.6793 | **0.6667** | 0.6604 |
-| `pstudio` | 0.7851 | **0.8142** | 0.7395 | **0.8053** | 0.7286 | **0.7863** |
-| `ds` | 0.6996 | **0.7211** | 0.7032 | **0.7284** | 0.6991 | **0.7265** |
-| **mean** | **0.7714** | 0.7442 | **0.7390** | 0.7332 | **0.7229** | 0.7181 |
-
-**EPE** (↓):
-
-| Subset | T4W 16f | D4RT 16f | T4W 50f | D4RT 50f | T4W 64f | D4RT 64f |
-|---|---:|---:|---:|---:|---:|---:|
-| `adt` | **0.1478** | 0.2421 | **0.1862** | 0.2712 | **0.2212** | 0.2966 |
-| `po` | **0.2589** | 0.3330 | **0.3041** | 0.3216 | **0.3323** | 0.3397 |
-| `pstudio` | 0.1968 | **0.1663** | 0.2200 | **0.1693** | 0.2274 | **0.1812** |
-| `ds` | 0.3091 | **0.3023** | 0.3062 | **0.2941** | 0.3088 | **0.2944** |
-| **mean** | **0.2282** | 0.2609 | **0.2541** | 0.2640 | **0.2724** | 0.2780 |
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2" align="left">Model</th>
+      <th colspan="2" align="center">PStudio</th>
+      <th colspan="2" align="center">PO</th>
+      <th colspan="2" align="center">DR</th>
+      <th colspan="2" align="center">ADT</th>
+    </tr>
+    <tr>
+      <th align="right">APD&nbsp;↑</th><th align="right">EPE&nbsp;↓</th>
+      <th align="right">APD&nbsp;↑</th><th align="right">EPE&nbsp;↓</th>
+      <th align="right">APD&nbsp;↑</th><th align="right">EPE&nbsp;↓</th>
+      <th align="right">APD&nbsp;↑</th><th align="right">EPE&nbsp;↓</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Track4World</b> · 16f</td><td align="right">78.51</td><td align="right">0.1968</td><td align="right"><b>73.32</b></td><td align="right"><b>0.2589</b></td><td align="right">69.96</td><td align="right">0.3091</td><td align="right"><b>86.76</b></td><td align="right"><b>0.1478</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 16f</td><td align="right"><b>81.42</b></td><td align="right"><b>0.1663</b></td><td align="right">68.80</td><td align="right">0.3330</td><td align="right"><b>72.11</b></td><td align="right"><b>0.3023</b></td><td align="right">75.34</td><td align="right">0.2421</td></tr>
+    <tr><td><b>Track4World</b> · 50f</td><td align="right">73.95</td><td align="right">0.2200</td><td align="right"><b>69.19</b></td><td align="right"><b>0.3041</b></td><td align="right">70.32</td><td align="right">0.3062</td><td align="right"><b>82.14</b></td><td align="right"><b>0.1862</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 50f</td><td align="right"><b>80.53</b></td><td align="right"><b>0.1693</b></td><td align="right">67.93</td><td align="right">0.3216</td><td align="right"><b>72.84</b></td><td align="right"><b>0.2941</b></td><td align="right">71.97</td><td align="right">0.2712</td></tr>
+    <tr><td><b>Track4World</b> · 64f</td><td align="right">72.86</td><td align="right">0.2274</td><td align="right"><b>66.67</b></td><td align="right"><b>0.3323</b></td><td align="right">69.91</td><td align="right">0.3088</td><td align="right"><b>79.71</b></td><td align="right"><b>0.2212</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 64f</td><td align="right"><b>78.63</b></td><td align="right"><b>0.1812</b></td><td align="right">66.04</td><td align="right">0.3397</td><td align="right"><b>72.65</b></td><td align="right"><b>0.2944</b></td><td align="right">69.91</td><td align="right">0.2966</td></tr>
+  </tbody>
+</table>
 
 Under **Track4World's protocol** (isotropic scale + 3D shift alignment, TAPVid-3D
-thresholds). **APD** (↑):
+thresholds). APD, AJ and OA shown as percentages, higher is better:
 
-| Subset | T4W 16f | D4RT 16f | T4W 50f | D4RT 50f | T4W 64f | D4RT 64f |
-|---|---:|---:|---:|---:|---:|---:|
-| `adt` | **0.6283** | 0.5051 | **0.5669** | 0.5089 | **0.5440** | 0.4864 |
-| `po` | **0.5386** | 0.5143 | **0.5131** | 0.5026 | **0.5045** | 0.4887 |
-| `pstudio` | 0.5914 | **0.5993** | 0.5456 | **0.5853** | 0.5365 | **0.5666** |
-| `ds` | 0.4975 | **0.5073** | 0.5095 | **0.5234** | 0.5101 | **0.5234** |
-| **mean** | **0.5639** | 0.5315 | **0.5338** | 0.5301 | **0.5238** | 0.5163 |
-
-**AJ** (↑):
-
-| Subset | T4W 16f | D4RT 16f | T4W 50f | D4RT 50f | T4W 64f | D4RT 64f |
-|---|---:|---:|---:|---:|---:|---:|
-| `adt` | **0.5817** | 0.4533 | **0.5194** | 0.4390 | **0.4965** | 0.4146 |
-| `po` | **0.3965** | 0.3732 | **0.3555** | 0.3446 | **0.3466** | 0.3300 |
-| `pstudio` | 0.5186 | **0.5233** | 0.4442 | **0.4998** | 0.4244 | **0.4739** |
-| `ds` | 0.4389 | **0.4447** | 0.4407 | **0.4453** | 0.4391 | **0.4418** |
-| **mean** | **0.4839** | 0.4486 | **0.4400** | 0.4322 | **0.4266** | 0.4151 |
-
-**OA** (↑):
-
-| Subset | T4W 16f | D4RT 16f | T4W 50f | D4RT 50f | T4W 64f | D4RT 64f |
-|---|---:|---:|---:|---:|---:|---:|
-| `adt` | **0.9878** | 0.9724 | **0.9812** | 0.9350 | **0.9792** | 0.9185 |
-| `po` | 0.8004 | **0.8164** | 0.7681 | **0.7969** | 0.7649 | **0.7933** |
-| `pstudio` | **0.9367** | 0.9291 | 0.8791 | **0.9102** | 0.8605 | **0.8961** |
-| `ds` | **0.9721** | 0.9620 | **0.9464** | 0.9332 | **0.9403** | 0.9260 |
-| **mean** | **0.9242** | 0.9200 | 0.8937 | **0.8938** | **0.8862** | 0.8835 |
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2" align="left">Model</th>
+      <th colspan="3" align="center">PStudio</th>
+      <th colspan="3" align="center">PO</th>
+      <th colspan="3" align="center">DR</th>
+      <th colspan="3" align="center">ADT</th>
+    </tr>
+    <tr>
+      <th align="right">APD&nbsp;↑</th><th align="right">AJ&nbsp;↑</th><th align="right">OA&nbsp;↑</th>
+      <th align="right">APD&nbsp;↑</th><th align="right">AJ&nbsp;↑</th><th align="right">OA&nbsp;↑</th>
+      <th align="right">APD&nbsp;↑</th><th align="right">AJ&nbsp;↑</th><th align="right">OA&nbsp;↑</th>
+      <th align="right">APD&nbsp;↑</th><th align="right">AJ&nbsp;↑</th><th align="right">OA&nbsp;↑</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Track4World</b> · 16f</td><td align="right">59.14</td><td align="right">51.86</td><td align="right"><b>93.67</b></td><td align="right"><b>53.86</b></td><td align="right"><b>39.65</b></td><td align="right">80.04</td><td align="right">49.75</td><td align="right">43.89</td><td align="right"><b>97.21</b></td><td align="right"><b>62.83</b></td><td align="right"><b>58.17</b></td><td align="right"><b>98.78</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 16f</td><td align="right"><b>59.93</b></td><td align="right"><b>52.33</b></td><td align="right">92.91</td><td align="right">51.43</td><td align="right">37.32</td><td align="right"><b>81.64</b></td><td align="right"><b>50.73</b></td><td align="right"><b>44.47</b></td><td align="right">96.20</td><td align="right">50.51</td><td align="right">45.33</td><td align="right">97.24</td></tr>
+    <tr><td><b>Track4World</b> · 50f</td><td align="right">54.56</td><td align="right">44.42</td><td align="right">87.91</td><td align="right"><b>51.31</b></td><td align="right"><b>35.55</b></td><td align="right">76.81</td><td align="right">50.95</td><td align="right">44.07</td><td align="right"><b>94.64</b></td><td align="right"><b>56.69</b></td><td align="right"><b>51.94</b></td><td align="right"><b>98.12</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 50f</td><td align="right"><b>58.53</b></td><td align="right"><b>49.98</b></td><td align="right"><b>91.02</b></td><td align="right">50.26</td><td align="right">34.46</td><td align="right"><b>79.69</b></td><td align="right"><b>52.34</b></td><td align="right"><b>44.53</b></td><td align="right">93.32</td><td align="right">50.89</td><td align="right">43.90</td><td align="right">93.50</td></tr>
+    <tr><td><b>Track4World</b> · 64f</td><td align="right">53.65</td><td align="right">42.44</td><td align="right">86.05</td><td align="right"><b>50.45</b></td><td align="right"><b>34.66</b></td><td align="right">76.49</td><td align="right">51.01</td><td align="right">43.91</td><td align="right"><b>94.03</b></td><td align="right"><b>54.40</b></td><td align="right"><b>49.65</b></td><td align="right"><b>97.92</b></td></tr>
+    <tr><td><b>OpenD4RT</b> · 64f</td><td align="right"><b>56.66</b></td><td align="right"><b>47.39</b></td><td align="right"><b>89.61</b></td><td align="right">48.87</td><td align="right">33.00</td><td align="right"><b>79.33</b></td><td align="right"><b>52.34</b></td><td align="right"><b>44.18</b></td><td align="right">92.60</td><td align="right">48.64</td><td align="right">41.46</td><td align="right">91.85</td></tr>
+  </tbody>
+</table>
 
 ---
 
